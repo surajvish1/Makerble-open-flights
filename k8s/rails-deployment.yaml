@@ -1,0 +1,27 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openflights
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openflights
+  template:
+    metadata:
+      labels:
+        app: openflights
+    spec:
+      containers:
+        - name: openflights
+          image: yourdockerhub/openflights:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DATABASE_HOST
+              value: postgres
+            - name: DATABASE_USERNAME
+              value: postgres
+            - name: DATABASE_PASSWORD
+              value: password
